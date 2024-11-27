@@ -1,0 +1,10 @@
+package Entities;
+
+
+@Entity
+public class Language {
+
+    private int languageId;
+    private String names;
+    private java.sql.Timestamp lastUpdate;
+}

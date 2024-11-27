@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;kel0060&apos;&#x0A;- Original project: &apos;kel0060&apos;&#x0A;- Original element: &apos;kel0060/java/cz.vsb.tuo.kel0060.dedicnost&apos;" description="Delete element" element1="/java=/optional=/true=/=/maven.pomderived=/true=/&lt;cz.vsb.tuo.kel0060.dedicnost" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1732104116060" subPackages="false" version="1.0"/>
+</session>

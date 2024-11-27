@@ -1,0 +1,24 @@
+package cz.vsb.tuo.kel0060.classes;
+
+
+import Entities.Order;
+import jakarta.persistence.Entity;
+
+/**
+ * Represents a digital order.
+ * Stored in its own table, inheriting fields from the Order base class.
+ * Concrete Class Inheritance 
+ */
+@Entity
+public class DigitalOrder extends Order {
+    private String downloadLink; // Specific field for digital orders
+
+    // Getters and Setters
+    public String getDownloadLink() {
+        return downloadLink;
+    }
+
+    public void setDownloadLink(String downloadLink) {
+        this.downloadLink = downloadLink;
+    }
+} 

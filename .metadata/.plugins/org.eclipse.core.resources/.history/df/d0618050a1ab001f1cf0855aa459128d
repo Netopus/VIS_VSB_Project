@@ -1,0 +1,177 @@
+package cz.vsb.tuo.kel0060;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+
+//Table Data Gateway
+
+public class UserGateway {
+    private Long id;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private char role;
+    private String password;
+    private Timestamp createDate;
+    private Timestamp lastUpdate;
+    private String url = Appconfig.SQLurl;
+    
+
+    // Add a new user to the database
+    public void addUser(String email, String firstName, String lastName, char role, String password) {
+        String checkSql = "SELECT COUNT(*) AS count FROM User WHERE email = ?";
+        String sql = "INSERT INTO User(email, first_name, last_name, roles, create_date, last_update, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        
+        try (Connection conn = DriverManager.getConnection(url)) {
+            // Check if user with the same email already exists
+            try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+                checkStmt.setString(1, email);
+                ResultSet rs = checkStmt.executeQuery();
+                if (rs.getInt("count") > 0) {
+                    System.out.println("Uživatel s tímto emailem už existuje.");
+                    return;
+                }
+            }
+
+            // Insert the new user
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                LocalDateTime now = LocalDateTime.now();
+                LocalDateTime slightlyLater = now.plusSeconds(1);
+                pstmt.setString(1, email);
+                pstmt.setString(2, firstName);
+                pstmt.setString(3, lastName);
+                pstmt.setString(4, String.valueOf(role));
+                pstmt.setTimestamp(5, Timestamp.valueOf(now)); // create_date
+                pstmt.setTimestamp(6, Timestamp.valueOf(slightlyLater)); // last_update
+                pstmt.setString(7, password);
+                pstmt.executeUpdate();
+                System.out.println("Uživatel přidán do systému.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Delete a user based on their ID
+    public void deleteUser(int userId) {
+        String sql = "DELETE FROM User WHERE users_id = ?";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Uživatel smazán.");
+            } else {
+                System.out.println("Uživatel s tímto ID neexistuje.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Update the user's last update date (e.g., after any modification)
+    public void updateUserLastUpdate(int userId) {
+        String sql = "UPDATE User SET last_update = ? WHERE users_id = ?";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            LocalDateTime now = LocalDateTime.now();
+            pstmt.setTimestamp(1, Timestamp.valueOf(now)); // last_update
+            pstmt.setInt(2, userId);
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Uživatelův záznam aktualizován.");
+            } else {
+                System.out.println("Uživatel s tímto ID neexistuje.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public UserGateway() {}
+
+    public UserGateway(Long id) {
+        this.id = id;
+    }
+
+    public static UserGateway findById(Long id) throws SQLException {
+        String sql = "SELECT * FROM User WHERE users_id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapRowToUser(rs);
+                } else {
+                    return null; // No user found
+                }
+            }
+        }
+    }
+
+    public static UserGateway findByEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM User WHERE email = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapRowToUser(rs);
+                } else {
+                    return null; // No user found
+                }
+            }
+        }
+    }
+
+    public static List<UserGateway> findByRole(char role) throws SQLException {
+        String sql = "SELECT * FROM User WHERE roles = ?";
+        List<UserGateway> users = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, String.valueOf(role));
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    users.add(mapRowToUser(rs));
+                }
+            }
+        }
+        return users;
+    }
+
+    public static List<UserGateway> findAll() throws SQLException {
+        String sql = "SELECT * FROM User";
+        List<UserGateway> users = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                users.add(mapRowToUser(rs));
+            }
+        }
+        return users;
+    }
+
+    // Private helper method to map a ResultSet row to a UserGateway object
+    private static UserGateway mapRowToUser(ResultSet rs) throws SQLException {
+        UserGateway user = new UserGateway();
+        user.setId(rs.getLong("users_id"));
+        user.setEmail(rs.getString("email"));
+        user.setFirstName(rs.getString("first_name"));
+        user.setLastName(rs.getString("last_name"));
+        user.setRole(rs.getString("roles").charAt(0));
+        user.setPassword(rs.getString("password"));
+        user.setCreateDate(rs.getTimestamp("create_date"));
+        user.setLastUpdate(rs.getTimestamp("last_update"));
+        return user;
+    }
+}

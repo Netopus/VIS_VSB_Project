@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="replacehistory">
+		<item value="?"/>
+	</list>
+	<list key="searchhistory">
+		<item value="AUTOINCREMENT"/>
+		<item value="MangaCategories"/>
+		<item value="sql"/>
+		<item value="Acce"/>
+		<item value="sqlite"/>
+		<item value="GETDATE()"/>
+	</list>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="&#x0A;org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &apos;mangaTS&apos;: Unsatisfied dependency expressed through field &apos;languageRepository&apos;: Error creating bean with name &apos;languageRepository&apos; defined in cz.vsb.tuo.kel0060.repository.LanguageRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Not a managed type: class Entities.Language&#x0A;&#x09;at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapa"/>
+		<list key="findhistory">
+			<item value="&#x0A;org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name &apos;mangaTS&apos;: Unsatisfied dependency expressed through field &apos;languageRepository&apos;: Error creating bean with name &apos;languageRepository&apos; defined in cz.vsb.tuo.kel0060.repository.LanguageRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Not a managed type: class Entities.Language&#x0A;&#x09;at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439) ~[spring-beans-6.1.13.jar:6.1.13]&#x0A;&#x09;at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapa"/>
+		</list>
+	</section>
+</section>

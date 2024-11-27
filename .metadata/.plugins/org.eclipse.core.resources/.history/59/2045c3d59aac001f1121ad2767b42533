@@ -1,0 +1,32 @@
+package cz.vsb.tuo.kel0060.classes;
+
+import Entities.Order;
+import jakarta.persistence.Entity;
+
+/**
+ * Represents a physical order.
+ * Stored in its own table, inheriting fields from the Order base class.
+ * Concrete Class Inheritance 
+ */
+@Entity
+public class PhysicalOrder extends Order {
+    private String shippingAddress; // Specific field for physical orders
+    private String trackingNumber;  // Additional field for tracking shipments
+
+    // Getters and Setters
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
+}
