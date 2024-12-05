@@ -7,9 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language, Integer> {
-    // The `findById` method is already provided by JpaRepository.
-    // However, we can add custom methods if needed.
-
-    // Optionally add custom queries if needed:
-    // Example: List<Language> findByName(String name);
 }

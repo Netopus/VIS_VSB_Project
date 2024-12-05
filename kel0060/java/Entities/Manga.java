@@ -17,7 +17,7 @@ public class Manga extends Media {
 
     private int accessCount;
     
-    
+    	
 
     // Default Constructor
     public Manga() {

@@ -37,4 +37,9 @@ public class OrderRepository {
         em.close();
         emf.close();
     }
+
+	public OrderSystem save(DigitalOrder order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
